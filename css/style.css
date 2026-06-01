@@ -6,8 +6,8 @@ font-family:Arial,sans-serif;
 }
 
 body{
-padding:20px;
-background:#f5f5f5;
+padding:25px;
+background:#e8e8e8;
 color:var(--main-color);
 line-height:1.5;
 overflow-x:hidden;
