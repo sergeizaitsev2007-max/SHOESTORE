@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHOESTORE - Товар</title>
+<link rel="stylesheet" href="../css/product.css">
+</head>
+<body>
+<header>
+<a href="../index.html" class="logo">
+👟 SHOESTORE
+</a>
+<nav>
+<a href="#"><span class="nav-text">ПОИСК </span>🔍</a>
+<a href="catalog.html"><span class="nav-text">КАТАЛОГ </span>📋</a>
+<a href="#" id="cartBtn"><span class="nav-text">КОРЗИНА </span>🛒</a>
+<a href="profil.html"><span class="nav-text">ЛИЧНЫЙ КАБИНЕТ </span>👤</a>
+</nav>
+<button class="theme-btn">🌙</button>
+</header>
+<main>
+<p class="path">ГЛАВНАЯ > КАТАЛОГ > CAIQISS</p>
+<section class="product-block">
+  <div class="product-image"></div>
+  <div class="product-info"></div>
+</section>
+<section class="reviews">
+<h2>ОТЗЫВЫ</h2>
+<div class="review-input">
+<input type="text" placeholder="ДОБАВИТЬ ОТЗЫВ..." id="reviewInput">
+<button id="reviewBtn">ОТПРАВИТЬ</button>
+</div>
+<div class="review-cards"></div>
+</section>
+</main>
+<footer>
+<section>
+<h3>⛟ Быстрая доставка</h3>
+<p>Доставим ваш заказ в кратчайшие сроки</p>
+</section>
+<section>
+<h3>✅ Гарантия качества</h3>
+<p>Только оригинальная продукция</p>
+</section>
+<section>
+<h3>🔄 Лёгкий возврат</h3>
+<p>Возврат в течение 14 дней</p>
+</section>
+<section>
+<h3>📞 Поддержка 24/7</h3>
+<p>Мы всегда на связи и готовы помочь</p>
+</section>
+</footer>
+<div class="modal-overlay" id="cartModal">
+  <div class="modal">
+    <h2>🛒 Корзина</h2>
+    <p>Ваша корзина пуста</p>
+    <button class="modal-close">Закрыть</button>
+  </div>
+</div>
+<script src="../js/auth-guard.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/product-app.js"></script>
+<script src="../js/product-events.js"></script>
+</body>
+</html>

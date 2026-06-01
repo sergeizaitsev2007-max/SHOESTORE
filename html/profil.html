@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Личный кабинет — Shoestore</title>
+<link rel="stylesheet" href="../css/profil.css">
+</head>
+<body>
+<header>
+  <a href="../index.html" class="logo">
+    👟 SHOESTORE
+  </a>
+  <nav>
+    <a href="#"><span class="nav-text">ПОИСК </span>🔍</a>
+    <a href="catalog.html"><span class="nav-text">КАТАЛОГ </span>📋</a>
+    <a href="#" id="cartBtn"><span class="nav-text">КОРЗИНА </span>🛒</a>
+    <a href="profil.html"><span class="nav-text">ЛИЧНЫЙ КАБИНЕТ </span>👤</a>
+  </nav>
+  <button class="theme-btn">🌙</button>
+</header>
+<main>
+  <section class="auth-section">
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="loginTab" type="button">ВОЙТИ</button>
+      <button class="auth-tab" id="registerTab" type="button">РЕГИСТРАЦИЯ</button>
+    </div>
+    <form class="auth-form" id="loginForm" action="#" method="post">
+      <h2>Вход в аккаунт</h2>
+      <div class="input-group">
+        <label for="loginEmail">Email</label>
+        <input type="text" id="loginEmail" placeholder="example@mail.com">
+      </div>
+      <div class="input-group">
+        <label for="loginPassword">Пароль</label>
+        <input type="password" id="loginPassword" placeholder="Введите пароль">
+      </div>
+      <button type="submit" class="auth-btn">ВОЙТИ</button>
+    </form>
+    <form class="auth-form" id="registerForm" style="display:none;" action="#" method="post">
+      <h2>Регистрация</h2>
+      <div class="input-group">
+        <label for="registerName">Имя</label>
+        <input type="text" id="registerName" placeholder="Ваше имя">
+      </div>
+      <div class="input-group">
+        <label for="registerEmail">Email</label>
+        <input type="text" id="registerEmail" placeholder="example@mail.com">
+      </div>
+      <div class="input-group">
+        <label for="registerPassword">Пароль</label>
+        <input type="password" id="registerPassword" placeholder="Придумайте пароль">
+      </div>
+      <div class="input-group">
+        <label for="registerPassword2">Повторите пароль</label>
+        <input type="password" id="registerPassword2" placeholder="Повторите пароль">
+      </div>
+      <button type="submit" class="auth-btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+    </form>
+  </section>
+</main>
+<footer>
+  <section>
+    <h3>⛟ Быстрая доставка</h3>
+    <p>Доставим ваш заказ в кратчайшие сроки</p>
+  </section>
+  <section>
+    <h3>✅ Гарантия качества</h3>
+    <p>Только оригинальная продукция</p>
+  </section>
+  <section>
+    <h3>🔄 Легкий возврат</h3>
+    <p>Возврат в течении 14 дней</p>
+  </section>
+  <section>
+    <h3>📞 Поддержка 24/7</h3>
+    <p>Мы всегда на связи и готовы помочь</p>
+  </section>
+</footer>
+<div class="modal-overlay" id="cartModal">
+  <div class="modal">
+    <h2>🛒 Корзина</h2>
+    <p>Ваша корзина пуста</p>
+    <button class="modal-close" type="button">Закрыть</button>
+  </div>
+</div>
+<script src="../js/theme.js"></script>
+<script src="../js/profil-events.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог</title>
+<link rel="stylesheet" href="../css/catalog.css">
+</head>
+<body>
+<header>
+<a href="../index.html" class="logo">👟 SHOESTORE</a>
+<nav>
+<a href="#"><span class="nav-text">ПОИСК </span>🔍</a>
+<a href="catalog.html"><span class="nav-text">КАТАЛОГ </span>📋</a>
+<a href="#" id="cartBtn"><span class="nav-text">КОРЗИНА </span>🛒</a>
+<a href="profil.html"><span class="nav-text">ЛИЧНЫЙ КАБИНЕТ </span>👤</a>
+</nav>
+<button class="theme-btn">🌙</button>
+</header>
+<main>
+<section class="search">
+<input type="text" placeholder="ПОИСК ОБУВИ...">
+</section>
+<section class="controls">
+  <select id="categoryFilter">
+    <option value="all">Все категории</option>
+    <option value="Sneakers">Sneakers</option>
+    <option value="Casual">Casual</option>
+    <option value="Sport">Sport</option>
+  </select>
+  <select id="sortSelect">
+    <option value="default">Сортировка</option>
+    <option value="low">Цена ↑</option>
+    <option value="high">Цена ↓</option>
+  </select>
+</section>
+<section class="catalog"></section>
+</main>
+<footer>
+<section>
+<h3>⛟ Быстрая доставка</h3>
+<p>Доставим ваш заказ в кратчайшие сроки</p>
+</section>
+<section>
+<h3>✅ Гарантия качества</h3>
+<p>Только оригинальная продукция</p>
+</section>
+<section>
+<h3>🔄 Легкий возврат</h3>
+<p>Возврат в течении 14 дней</p>
+</section>
+<section>
+<h3>📞 Поддержка 24/7</h3>
+<p>Мы всегда на связи и готовы помочь</p>
+</section>
+</footer>
+<div class="modal-overlay" id="cartModal">
+  <div class="modal">
+    <h2>🛒 Корзина</h2>
+    <p>Ваша корзина пуста</p>
+    <button class="modal-close">Закрыть</button>
+  </div>
+</div>
+<script src="../js/auth-guard.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/catalog-app.js"></script>
+<script src="../js/catalog-events.js"></script>
+</body>
+</html>
