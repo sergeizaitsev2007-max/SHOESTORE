@@ -6,6 +6,8 @@ const categoryFilter = document.getElementById('categoryFilter');
 const sortSelect = document.getElementById('sortSelect');
 const searchInput = document.querySelector('.search input');
 
+const savedFilters =
+  JSON.parse(localStorage.getItem('catalogFilters')) || {};
 
 if (savedFilters.category) categoryFilter.value = savedFilters.category;
 if (savedFilters.sort)     sortSelect.value     = savedFilters.sort;
