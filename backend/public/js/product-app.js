@@ -34,18 +34,8 @@ info.innerHTML = `
   <h1>${product.title}</h1>
   <p class="description">${product.description}</p>
   <h2>${product.price.toLocaleString()} ₸</h2>
-  <button class="add-to-cart">В КОРЗИНУ</button>
+  <button>В КОРЗИНУ</button>
 `;
-
-info.querySelector('.add-to-cart').addEventListener('click', function() {
-  addToCart(product.title, product.price, product.img);
-  this.textContent = '✓ ДОБАВЛЕНО';
-  this.classList.add('btn-added');
-  setTimeout(() => {
-    this.textContent = 'В КОРЗИНУ';
-    this.classList.remove('btn-added');
-  }, 1500);
-});
 
 const container = document.querySelector(".review-cards");
 const reviewInput = document.getElementById("reviewInput");
@@ -71,15 +61,18 @@ function renderReviews() {
 reviewBtn.addEventListener("click", () => {
   const text = reviewInput.value.trim();
   if (text === "") return;
+
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
   const userName = currentUser ? currentUser.name.toUpperCase() : "ВЫ";
   const userAvatar = userName.charAt(0);
+
   const newReview = {
     avatar: userAvatar,
     name: userName,
     text: text,
     date: new Date().toLocaleDateString()
   };
+
   reviews.unshift(newReview);
   localStorage.setItem('productReviews', JSON.stringify(reviews));
   renderReviews();

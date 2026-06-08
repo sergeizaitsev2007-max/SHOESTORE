@@ -51,20 +51,9 @@ function renderProducts(list) {
       </div>
       <div class="price">
         <h3>${product.price.toLocaleString()} ₸</h3>
-        <button class="add-to-cart">В КОРЗИНУ</button>
+        <button>В КОРЗИНУ</button>
       </div>
     `;
-
-    card.querySelector('.add-to-cart').addEventListener('click', function() {
-      addToCart(product.title, product.price, product.img);
-      this.textContent = '✓ ДОБАВЛЕНО';
-      this.classList.add('btn-added');
-      setTimeout(() => {
-        this.textContent = 'В КОРЗИНУ';
-        this.classList.remove('btn-added');
-      }, 1500);
-    });
-
     catalog.appendChild(card);
   });
 }
@@ -95,3 +84,4 @@ function applyFilters() {
 
   renderProducts(result);
 }
+

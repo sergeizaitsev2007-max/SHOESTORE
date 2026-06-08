@@ -42,7 +42,6 @@ sortSelect.addEventListener('change', () => {
 
 cartBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  renderCartModal();
   cartModal.classList.add('active');
 });
 
@@ -59,30 +58,5 @@ cartModal.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     cartModal.classList.remove('active');
-  }
-});
-const searchBtn = document.getElementById('searchBtn');
-const headerSearchBox = document.getElementById('headerSearchBox');
-const headerSearchInput2 = document.getElementById('headerSearchInput');
-
-searchBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (headerSearchBox.style.display === 'none' || headerSearchBox.style.display === '') {
-    headerSearchBox.style.display = 'block';
-    headerSearchInput2.focus();
-  } else {
-    headerSearchBox.style.display = 'none';
-  }
-});
-
-headerSearchInput2.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    const query = headerSearchInput2.value.trim();
-    if (query) {
-      const filters = JSON.parse(localStorage.getItem('catalogFilters')) || {};
-      filters.search = query;
-      localStorage.setItem('catalogFilters', JSON.stringify(filters));
-      window.location.href = 'catalog.html';
-    }
   }
 });

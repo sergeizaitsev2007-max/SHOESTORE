@@ -34,18 +34,7 @@ products.forEach(product => {
     <img src="${product.img}" alt="${product.title}">
     <a href="${product.link}"><h3>${product.title}</h3></a>
     <p>${product.price.toLocaleString()} ₸</p>
-    <button class="add-to-cart">В КОРЗИНУ</button>
+    <button>В КОРЗИНУ</button>
   `;
-
-  card.querySelector('.add-to-cart').addEventListener('click', function() {
-    addToCart(product.title, product.price, product.img);
-    this.textContent = '✓ ДОБАВЛЕНО';
-    this.classList.add('btn-added');
-    setTimeout(() => {
-      this.textContent = 'В КОРЗИНУ';
-      this.classList.remove('btn-added');
-    }, 1500);
-  });
-
   container.appendChild(card);
 });

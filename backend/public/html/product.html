@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Каталог</title>
-<link rel="stylesheet" href="../css/catalog.css">
+<title>SHOESTORE - Товар</title>
+<link rel="stylesheet" href="../css/product.css">
 </head>
 <body>
 <header>
-<a href="../index.html" class="logo">👟 SHOESTORE</a>
+<a href="../index.html" class="logo">
+👟 SHOESTORE
+</a>
 <nav>
-<a href="#" id="searchBtn"><span class="nav-text">ПОИСК </span>🔍</a>
-<div id="headerSearchBox" style="display:none;">
-  <input type="text" id="headerSearchInput" placeholder="Поиск бренда...">
-</div>
+<a href="#"><span class="nav-text">ПОИСК </span>🔍</a>
 <a href="catalog.html"><span class="nav-text">КАТАЛОГ </span>📋</a>
 <a href="#" id="cartBtn"><span class="nav-text">КОРЗИНА </span>🛒</a>
 <a href="profil.html"><span class="nav-text">ЛИЧНЫЙ КАБИНЕТ </span>👤</a>
@@ -21,23 +20,19 @@
 <button class="theme-btn">🌙</button>
 </header>
 <main>
-<section class="search">
-<input type="text" placeholder="ПОИСК ОБУВИ...">
+<p class="path">ГЛАВНАЯ > КАТАЛОГ > CAIQISS</p>
+<section class="product-block">
+  <div class="product-image"></div>
+  <div class="product-info"></div>
 </section>
-<section class="controls">
-  <select id="categoryFilter">
-    <option value="all">Все категории</option>
-    <option value="Sneakers">Sneakers</option>
-    <option value="Casual">Casual</option>
-    <option value="Sport">Sport</option>
-  </select>
-  <select id="sortSelect">
-    <option value="default">Сортировка</option>
-    <option value="low">Цена ↑</option>
-    <option value="high">Цена ↓</option>
-  </select>
+<section class="reviews">
+<h2>ОТЗЫВЫ</h2>
+<div class="review-input">
+<input type="text" placeholder="ДОБАВИТЬ ОТЗЫВ..." id="reviewInput">
+<button id="reviewBtn">ОТПРАВИТЬ</button>
+</div>
+<div class="review-cards"></div>
 </section>
-<section class="catalog"></section>
 </main>
 <footer>
 <section>
@@ -49,8 +44,8 @@
 <p>Только оригинальная продукция</p>
 </section>
 <section>
-<h3>🔄 Легкий возврат</h3>
-<p>Возврат в течении 14 дней</p>
+<h3>🔄 Лёгкий возврат</h3>
+<p>Возврат в течение 14 дней</p>
 </section>
 <section>
 <h3>📞 Поддержка 24/7</h3>
@@ -64,10 +59,9 @@
     <button class="modal-close">Закрыть</button>
   </div>
 </div>
-<script src="../js/cart.js"></script>
 <script src="../js/auth-guard.js"></script>
 <script src="../js/theme.js"></script>
-<script src="../js/catalog-app.js"></script>
-<script src="../js/catalog-events.js"></script>
+<script src="../js/product-app.js"></script>
+<script src="../js/product-events.js"></script>
 </body>
 </html>
