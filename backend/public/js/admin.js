@@ -14,14 +14,14 @@ function getAuthHeaders() {
 }
 
 function deleteProductFromServer(id) {
-  return fetch(`http://localhost:3000/api/products/${id}`, {
+  return fetch(`/api/products/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders()
   }).then(res => res.json());
 }
 
 function updateProductOnServer(id, data) {
-  return fetch(`http://localhost:3000/api/products/${id}`, {
+  return fetch(`/api/products/${id}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify(data)
@@ -29,7 +29,7 @@ function updateProductOnServer(id, data) {
 }
 
 function createProductOnServer(data) {
-  return fetch('http://localhost:3000/api/products', {
+  return fetch('/api/products', {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(data)

@@ -6,7 +6,7 @@ let currentProduct = null;
 const params = new URLSearchParams(window.location.search);
 const productId = params.get('id') || 1;
 
-fetch(`http://localhost:3000/api/products/${productId}`)
+fetch(`/api/products/${productId}`)
   .then(res => res.json())
   .then(product => {
     currentProduct = product;

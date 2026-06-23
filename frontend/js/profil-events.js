@@ -115,7 +115,7 @@ registerForm.addEventListener('submit', (e) => {
 
   if (!valid) return;
 
-  fetch('http://localhost:3000/api/users/register', {
+fetch('/api/users/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -162,7 +162,7 @@ loginForm.addEventListener('submit', (e) => {
 
   if (!valid) return;
 
-  fetch('http://localhost:3000/api/users/login', {
+ fetch('/api/users/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
