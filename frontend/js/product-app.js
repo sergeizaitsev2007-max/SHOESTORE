@@ -3,12 +3,17 @@ const info = document.querySelector(".product-info");
 
 let currentProduct = null;
 
-fetch('http://localhost:3000/api/products/1')
+const params = new URLSearchParams(window.location.search);
+const productId = params.get('id') || 1;
+
+fetch(`http://localhost:3000/api/products/${productId}`)
   .then(res => res.json())
   .then(product => {
     currentProduct = product;
 
     image.innerHTML = `<img src="../${product.image_url}" alt="${product.title}">`;
+    
+   document.getElementById('breadcrumb').textContent = `ГЛАВНАЯ > КАТАЛОГ > ${product.title.toUpperCase()}`;
 
     info.innerHTML = `
       <h1>${product.title}</h1>
@@ -59,7 +64,11 @@ const reviewBtn = document.getElementById("reviewBtn");
 
 function renderReviews() {
   container.innerHTML = "";
-  reviews.forEach(review => {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+  const currentName = currentUser ? currentUser.name.toUpperCase() : null;
+
+  reviews.forEach((review, index) => {
+    const canDelete = currentName && review.name === currentName;
     const card = document.createElement("div");
     card.classList.add("review-card");
     card.innerHTML = `
@@ -69,12 +78,19 @@ function renderReviews() {
         <p>${review.text}</p>
       </div>
       <span>${review.date}</span>
+      ${canDelete ? `<button class="review-delete-btn" data-index="${index}">✕</button>` : ''}
     `;
     container.appendChild(card);
   });
-}
 
-reviewBtn.addEventListener("click", () => {
+  container.querySelectorAll('.review-delete-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      reviews.splice(+btn.dataset.index, 1);
+      localStorage.setItem('productReviews', JSON.stringify(reviews));
+      renderReviews();
+    });
+  });
+}reviewBtn.addEventListener("click", () => {
   const text = reviewInput.value.trim();
   if (text === "") return;
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');

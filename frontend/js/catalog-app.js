@@ -70,7 +70,7 @@ function renderProducts(list) {
   list.forEach(product => {
     const card = document.createElement("article");
     card.classList.add("card");
-    const link = product.id === 1 ? "product.html" : "#";
+	const link = `product.html?id=${product.id}`;
 
     let adminControls = "";
     if (isAdmin()) {

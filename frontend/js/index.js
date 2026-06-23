@@ -8,7 +8,7 @@ fetch('http://localhost:3000/api/products')
     data.forEach(product => {
       const card = document.createElement("article");
       card.classList.add("card");
-      const link = product.id === 1 ? "html/product.html" : "#";
+      const link = `html/product.html?id=${product.id}`;
       card.innerHTML = `
         <img src="${product.image_url}" alt="${product.title}">
         <a href="${link}"><h3>${product.title}</h3></a>
