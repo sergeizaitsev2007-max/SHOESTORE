@@ -1,51 +1,35 @@
-const products = [
-  {
-    title: "Wariror",
-    price: 26000,
-    img: "images/index/shoe1.jpg",
-    link: "html/product.html"
-  },
-  {
-    title: "Bmai Cardon 3.0 Ultra",
-    price: 34000,
-    img: "images/index/shoe2.jpg",
-    link: "#"
-  },
-  {
-    title: "Audienz",
-    price: 23000,
-    img: "images/index/shoe3.jpg",
-    link: "#"
-  },
-  {
-    title: "Balence kids",
-    price: 65000,
-    img: "images/index/shoe4.jpg",
-    link: "#"
-  }
-];
-
 const container = document.querySelector(".products");
 
-products.forEach(product => {
-  const card = document.createElement("article");
-  card.classList.add("card");
-  card.innerHTML = `
-    <img src="${product.img}" alt="${product.title}">
-    <a href="${product.link}"><h3>${product.title}</h3></a>
-    <p>${product.price.toLocaleString()} ₸</p>
-    <button class="add-to-cart">В КОРЗИНУ</button>
-  `;
+fetch('http://localhost:3000/api/products')
+  .then(res => res.json())
+  .then(data => {
+    const mainIds = [1, 5, 6, 10];
+    data = data.filter(p => mainIds.includes(p.id));
+    data.forEach(product => {
+      const card = document.createElement("article");
+      card.classList.add("card");
+      const link = product.id === 1 ? "html/product.html" : "#";
+      card.innerHTML = `
+        <img src="${product.image_url}" alt="${product.title}">
+        <a href="${link}"><h3>${product.title}</h3></a>
+        <p>${product.price.toLocaleString()} ₸</p>
+        <button class="add-to-cart">В КОРЗИНУ</button>
+      `;
 
-  card.querySelector('.add-to-cart').addEventListener('click', function() {
-    addToCart(product.title, product.price, product.img);
-    this.textContent = '✓ ДОБАВЛЕНО';
-    this.classList.add('btn-added');
-    setTimeout(() => {
-      this.textContent = 'В КОРЗИНУ';
-      this.classList.remove('btn-added');
-    }, 1500);
+      card.querySelector('.add-to-cart').addEventListener('click', function() {
+        addToCart(product.title, product.price, product.image_url);
+        this.textContent = '✓ ДОБАВЛЕНО';
+        this.classList.add('btn-added');
+        setTimeout(() => {
+          this.textContent = 'В КОРЗИНУ';
+          this.classList.remove('btn-added');
+        }, 1500);
+      });
+
+      container.appendChild(card);
+    });
+  })
+  .catch(err => {
+    console.error('Ошибка загрузки товаров:', err);
+    container.innerHTML = '<p>Не удалось загрузить товары.</p>';
   });
-
-  container.appendChild(card);
-});

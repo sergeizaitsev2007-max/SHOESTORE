@@ -1,9 +1,41 @@
-const product = {
-  img: "../images/product/shoe9.jpg",
-  title: "Wariror",
-  description: "Это стильные кроссовки в современном спортивном стиле. Модель сочетает удобство, лёгкость и яркий дизайн.",
-  price: 26000
-};
+const image = document.querySelector(".product-image");
+const info = document.querySelector(".product-info");
+
+let currentProduct = null;
+
+const params = new URLSearchParams(window.location.search);
+const productId = params.get('id') || 1;
+
+fetch(`http://localhost:3000/api/products/${productId}`)
+  .then(res => res.json())
+  .then(product => {
+    currentProduct = product;
+
+    image.innerHTML = `<img src="../${product.image_url}" alt="${product.title}">`;
+    
+   document.getElementById('breadcrumb').textContent = `ГЛАВНАЯ > КАТАЛОГ > ${product.title.toUpperCase()}`;
+
+    info.innerHTML = `
+      <h1>${product.title}</h1>
+      <p class="description">${product.description}</p>
+      <h2>${product.price.toLocaleString()} ₸</h2>
+      <button class="add-to-cart">В КОРЗИНУ</button>
+    `;
+
+    info.querySelector('.add-to-cart').addEventListener('click', function() {
+      addToCart(product.title, product.price, `../${product.image_url}`);
+      this.textContent = '✓ ДОБАВЛЕНО';
+      this.classList.add('btn-added');
+      setTimeout(() => {
+        this.textContent = 'В КОРЗИНУ';
+        this.classList.remove('btn-added');
+      }, 1500);
+    });
+  })
+  .catch(err => {
+    console.error('Ошибка загрузки товара:', err);
+    info.innerHTML = '<p>Не удалось загрузить товар.</p>';
+  });
 
 const defaultReviews = [
   {
@@ -26,24 +58,17 @@ if (!reviews) {
   localStorage.setItem('productReviews', JSON.stringify(reviews));
 }
 
-const image = document.querySelector(".product-image");
-image.innerHTML = `<img src="${product.img}" alt="${product.title}">`;
-
-const info = document.querySelector(".product-info");
-info.innerHTML = `
-  <h1>${product.title}</h1>
-  <p class="description">${product.description}</p>
-  <h2>${product.price.toLocaleString()} ₸</h2>
-  <button>В КОРЗИНУ</button>
-`;
-
 const container = document.querySelector(".review-cards");
 const reviewInput = document.getElementById("reviewInput");
 const reviewBtn = document.getElementById("reviewBtn");
 
 function renderReviews() {
   container.innerHTML = "";
-  reviews.forEach(review => {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+  const currentName = currentUser ? currentUser.name.toUpperCase() : null;
+
+  reviews.forEach((review, index) => {
+    const canDelete = currentName && review.name === currentName;
     const card = document.createElement("div");
     card.classList.add("review-card");
     card.innerHTML = `
@@ -53,26 +78,30 @@ function renderReviews() {
         <p>${review.text}</p>
       </div>
       <span>${review.date}</span>
+      ${canDelete ? `<button class="review-delete-btn" data-index="${index}">✕</button>` : ''}
     `;
     container.appendChild(card);
   });
-}
 
-reviewBtn.addEventListener("click", () => {
+  container.querySelectorAll('.review-delete-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      reviews.splice(+btn.dataset.index, 1);
+      localStorage.setItem('productReviews', JSON.stringify(reviews));
+      renderReviews();
+    });
+  });
+}reviewBtn.addEventListener("click", () => {
   const text = reviewInput.value.trim();
   if (text === "") return;
-
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
   const userName = currentUser ? currentUser.name.toUpperCase() : "ВЫ";
   const userAvatar = userName.charAt(0);
-
   const newReview = {
     avatar: userAvatar,
     name: userName,
     text: text,
     date: new Date().toLocaleDateString()
   };
-
   reviews.unshift(newReview);
   localStorage.setItem('productReviews', JSON.stringify(reviews));
   renderReviews();

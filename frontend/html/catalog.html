@@ -64,7 +64,19 @@
     <button class="modal-close">Закрыть</button>
   </div>
 </div>
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal delete-modal">
+    <div class="delete-modal-icon">🗑️</div>
+    <h2>Удалить товар?</h2>
+    <p>Вы уверены, что хотите удалить <span id="deleteProductName"></span>?<br>Это действие нельзя отменить.</p>
+    <div class="delete-modal-buttons">
+      <button id="cancelDeleteBtn" class="modal-cancel-btn">Отмена</button>
+      <button id="confirmDeleteBtn" class="modal-confirm-btn">Удалить</button>
+    </div>
+  </div>
+</div>
 <script src="../js/cart.js"></script>
+<script src="../js/admin.js"></script>
 <script src="../js/auth-guard.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/catalog-app.js"></script>

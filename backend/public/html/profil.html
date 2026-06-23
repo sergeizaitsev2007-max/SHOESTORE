@@ -12,7 +12,10 @@
     👟 SHOESTORE
   </a>
   <nav>
-    <a href="#"><span class="nav-text">ПОИСК </span>🔍</a>
+    <a href="#" id="searchBtn"><span class="nav-text">ПОИСК </span>🔍</a>
+    <div id="headerSearchBox" style="display:none;">
+    <input type="text" id="headerSearchInput" placeholder="Поиск бренда...">
+    </div>
     <a href="catalog.html"><span class="nav-text">КАТАЛОГ </span>📋</a>
     <a href="#" id="cartBtn"><span class="nav-text">КОРЗИНА </span>🛒</a>
     <a href="profil.html"><span class="nav-text">ЛИЧНЫЙ КАБИНЕТ </span>👤</a>
@@ -84,6 +87,7 @@
     <button class="modal-close" type="button">Закрыть</button>
   </div>
 </div>
+<script src="../js/cart.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/profil-events.js"></script>
 </body>

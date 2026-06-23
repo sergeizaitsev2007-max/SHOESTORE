@@ -519,3 +519,161 @@ body.dark .modal {
   background: green !important;
   transform: scale(1.05);
 }
+.admin-controls {
+  display: flex;
+  gap: 10px;
+  padding: 10px 15px;
+  border-top: 1px solid #ddd;
+}
+
+.admin-controls button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.edit-btn {
+  background: #2196F3;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #1976D2;
+}
+
+.delete-btn {
+  background: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+}
+
+.admin-form input,
+.admin-form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.admin-form-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-form-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-btn, #saveNewProduct {
+  background: #4CAF50;
+  color: white;
+}
+
+.cancel-btn {
+  background: #999;
+  color: white;
+}
+
+.admin-add-wrapper {
+  margin-bottom: 20px;
+}
+
+#toggleAddForm {
+  padding: 12px 20px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#toggleAddForm:hover {
+  background: #333;
+}
+
+body.dark .admin-form {
+  background: #2a2a2a;
+}
+
+body.dark .admin-form input,
+body.dark .admin-form select {
+  background: #3a3a3a;
+  color: white;
+  border-color: #555;
+}
+
+body.dark .admin-controls {
+  border-top-color: #555;
+}
+.delete-modal-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.delete-modal-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.modal-cancel-btn {
+  padding: 12px 30px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.modal-cancel-btn:hover {
+  background: #f5f5f5;
+  border-color: #999;
+}
+
+.modal-confirm-btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 10px;
+  background: #f44336;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.modal-confirm-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}
+
+body.dark .modal-cancel-btn {
+  background: #3a3a3a;
+  border-color: #555;
+  color: white;
+}
+
+body.dark .modal-cancel-btn:hover {
+  background: #444;
+}

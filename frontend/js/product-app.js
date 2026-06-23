@@ -1,9 +1,36 @@
-const product = {
-  img: "../images/product/shoe9.jpg",
-  title: "Wariror",
-  description: "Это стильные кроссовки в современном спортивном стиле. Модель сочетает удобство, лёгкость и яркий дизайн.",
-  price: 26000
-};
+const image = document.querySelector(".product-image");
+const info = document.querySelector(".product-info");
+
+let currentProduct = null;
+
+fetch('http://localhost:3000/api/products/1')
+  .then(res => res.json())
+  .then(product => {
+    currentProduct = product;
+
+    image.innerHTML = `<img src="../${product.image_url}" alt="${product.title}">`;
+
+    info.innerHTML = `
+      <h1>${product.title}</h1>
+      <p class="description">${product.description}</p>
+      <h2>${product.price.toLocaleString()} ₸</h2>
+      <button class="add-to-cart">В КОРЗИНУ</button>
+    `;
+
+    info.querySelector('.add-to-cart').addEventListener('click', function() {
+      addToCart(product.title, product.price, `../${product.image_url}`);
+      this.textContent = '✓ ДОБАВЛЕНО';
+      this.classList.add('btn-added');
+      setTimeout(() => {
+        this.textContent = 'В КОРЗИНУ';
+        this.classList.remove('btn-added');
+      }, 1500);
+    });
+  })
+  .catch(err => {
+    console.error('Ошибка загрузки товара:', err);
+    info.innerHTML = '<p>Не удалось загрузить товар.</p>';
+  });
 
 const defaultReviews = [
   {
@@ -25,27 +52,6 @@ if (!reviews) {
   reviews = defaultReviews;
   localStorage.setItem('productReviews', JSON.stringify(reviews));
 }
-
-const image = document.querySelector(".product-image");
-image.innerHTML = `<img src="${product.img}" alt="${product.title}">`;
-
-const info = document.querySelector(".product-info");
-info.innerHTML = `
-  <h1>${product.title}</h1>
-  <p class="description">${product.description}</p>
-  <h2>${product.price.toLocaleString()} ₸</h2>
-  <button class="add-to-cart">В КОРЗИНУ</button>
-`;
-
-info.querySelector('.add-to-cart').addEventListener('click', function() {
-  addToCart(product.title, product.price, product.img);
-  this.textContent = '✓ ДОБАВЛЕНО';
-  this.classList.add('btn-added');
-  setTimeout(() => {
-    this.textContent = 'В КОРЗИНУ';
-    this.classList.remove('btn-added');
-  }, 1500);
-});
 
 const container = document.querySelector(".review-cards");
 const reviewInput = document.getElementById("reviewInput");

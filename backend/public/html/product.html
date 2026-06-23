@@ -12,7 +12,10 @@
 👟 SHOESTORE
 </a>
 <nav>
-<a href="#"><span class="nav-text">ПОИСК </span>🔍</a>
+<a href="#" id="searchBtn"><span class="nav-text">ПОИСК </span>🔍</a>
+<div id="headerSearchBox" style="display:none;">
+  <input type="text" id="headerSearchInput" placeholder="Поиск бренда...">
+</div>
 <a href="catalog.html"><span class="nav-text">КАТАЛОГ </span>📋</a>
 <a href="#" id="cartBtn"><span class="nav-text">КОРЗИНА </span>🛒</a>
 <a href="profil.html"><span class="nav-text">ЛИЧНЫЙ КАБИНЕТ </span>👤</a>
@@ -20,7 +23,7 @@
 <button class="theme-btn">🌙</button>
 </header>
 <main>
-<p class="path">ГЛАВНАЯ > КАТАЛОГ > CAIQISS</p>
+<p class="path" id="breadcrumb">ГЛАВНАЯ > КАТАЛОГ > ...</p>
 <section class="product-block">
   <div class="product-image"></div>
   <div class="product-info"></div>
@@ -59,6 +62,8 @@
     <button class="modal-close">Закрыть</button>
   </div>
 </div>
+<script src="../js/cart.js"></script>
+<script src="../js/admin.js"></script>
 <script src="../js/auth-guard.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/product-app.js"></script>

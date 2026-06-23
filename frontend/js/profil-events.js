@@ -41,7 +41,6 @@ function validateEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-
 function renderProfile(user) {
   const authSection = document.querySelector('.auth-section');
   authSection.innerHTML = `
@@ -116,25 +115,29 @@ registerForm.addEventListener('submit', (e) => {
 
   if (!valid) return;
 
-  const users = JSON.parse(localStorage.getItem('users') || '[]');
-  const exists = users.find(u => u.email === email.value.trim());
-  if (exists) {
-    showError(email, 'Этот email уже зарегистрирован');
-    return;
-  }
-
-  const newUser = {
-    name: name.value.trim(),
-    email: email.value.trim(),
-    password: password.value
-  };
-  users.push(newUser);
-  localStorage.setItem('users', JSON.stringify(users));
-
-  localStorage.setItem('currentUser', JSON.stringify({ name: newUser.name, email: newUser.email }));
-  renderProfile(newUser);
+  fetch('http://localhost:3000/api/users/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: name.value.trim(),
+      email: email.value.trim(),
+      password: password.value
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.error) {
+      showError(email, data.error);
+      return;
+    }
+    localStorage.setItem('currentUser', JSON.stringify({ id: data.id, name: data.name, email: data.email }));
+    renderProfile(data);
+  })
+  .catch(err => {
+    console.error('Ошибка регистрации:', err);
+    showSuccess(registerForm, 'Ошибка соединения с сервером');
+  });
 });
-
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -159,16 +162,27 @@ loginForm.addEventListener('submit', (e) => {
 
   if (!valid) return;
 
-  const users = JSON.parse(localStorage.getItem('users') || '[]');
-  const user = users.find(u => u.email === email.value.trim() && u.password === password.value);
-
-  if (!user) {
-    showError(password, 'Неверный email или пароль');
-    return;
-  }
-
-  localStorage.setItem('currentUser', JSON.stringify({ name: user.name, email: user.email }));
-  renderProfile(user);
+  fetch('http://localhost:3000/api/users/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: email.value.trim(),
+      password: password.value
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.error) {
+      showError(password, data.error);
+      return;
+    }
+    localStorage.setItem('currentUser', JSON.stringify({ id: data.id, name: data.name, email: data.email }));
+    renderProfile(data);
+  })
+  .catch(err => {
+    console.error('Ошибка входа:', err);
+    showError(password, 'Ошибка соединения с сервером');
+  });
 });
 
 cartBtn.addEventListener('click', (e) => {
@@ -188,6 +202,7 @@ cartModal.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') cartModal.classList.remove('active');
 });
+
 const searchBtn = document.getElementById('searchBtn');
 const headerSearchBox = document.getElementById('headerSearchBox');
 const headerSearchInput2 = document.getElementById('headerSearchInput');
